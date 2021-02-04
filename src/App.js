@@ -7,10 +7,11 @@ import Footer from './Components/Footer';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Home from './Views/Home';
 import About from './Views/About';
+import Product from './Views/Product';
 
 function App() {
   return (
-    <div>
+    <div className='relative pb-10 min-h-screen'>
       <Router>
         <Header />
         <div className='p-3'>
@@ -22,6 +23,10 @@ function App() {
             {/* About route */}
             <Route path='/about'>
               <About />
+            </Route>
+            {/* Product route */}
+            <Route path='/products/:id'>
+              <Product />
             </Route>
           </Switch>
         </div>
