@@ -5,38 +5,12 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Loader from '../Components/Loader';
 import ProductCard from '../Components/ProductCard';
+import { useAxiosGet } from '../Hooks/HttpRequests';
 
 function Home() {
   const url = `https://601bc3d81a9c22001705f9c3.mockapi.io/products?page=1&limit=10`;
-  const [products, setProducts] = useState({
-    loading: false,
-    data: null,
-    error: false,
-  });
 
-  useEffect(() => {
-    setProducts({
-      loading: true,
-      data: null,
-      error: false,
-    });
-    axios
-      .get(url)
-      .then((res) => {
-        setProducts({
-          loading: false,
-          data: res.data,
-          error: false,
-        });
-      })
-      .catch(() => {
-        setProducts({
-          loading: false,
-          data: null,
-          error: true,
-        });
-      });
-  }, [url]);
+  let products = useAxiosGet(url);
 
   let content = null;
 
